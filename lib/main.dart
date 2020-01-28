@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/question_brain.dart';
+import 'package:quiz_app/questions.dart';
+
+QuestionBrain questionBrain = new QuestionBrain();
 
 void main() => runApp(MyApp());
 
@@ -27,15 +31,8 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
-  List<String> question = [
-    "Flutter is created by Google",
-    "Mount Everest is not the highest mountain in the world",
-    "Bird cannot fly",
-  ];
-
-  List<bool> answers = [true, false, false];
-
   int qnsNo = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,7 +45,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                question[qnsNo],
+                questionBrain.getQuestionText(qnsNo),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -72,7 +69,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (answers[qnsNo] == true) {
+                  if (questionBrain.getQuestionAnswer(qnsNo) == true) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       color: Colors.green,
@@ -105,7 +102,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (answers[qnsNo] == false) {
+                  if (questionBrain.getQuestionAnswer(qnsNo) == false) {
                     scoreKeeper.add(Icon(
                       Icons.check,
                       color: Colors.green,
