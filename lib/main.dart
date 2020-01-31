@@ -33,6 +33,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
   int scoreCount = 0;
+  int totalQuestion = questionBrain.getQuestionNumber();
 
   void checkAnswer({bool userAnswer}) {
     setState(() {
@@ -43,7 +44,11 @@ class _QuizPageState extends State<QuizPage> {
           desc: "$scoreCount",
           buttons: [
             DialogButton(
-              child: Text("Play Again"),
+              child: Text(
+                "Play Again",
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Colors.grey.shade700,
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -88,10 +93,13 @@ class _QuizPageState extends State<QuizPage> {
                 style: TextStyle(color: Colors.white, fontSize: 24.0),
               ),
             ),
+            SizedBox(
+              width: 10.0,
+            ),
             Container(
               child: Text(
-                "$scoreCount",
-                style: TextStyle(color: Colors.white, fontSize: 50.0),
+                "$scoreCount/$totalQuestion",
+                style: TextStyle(color: Colors.white, fontSize: 45.0),
               ),
             ),
           ],
@@ -149,9 +157,13 @@ class _QuizPageState extends State<QuizPage> {
           ),
         ),
         SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 20.0),
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: scoreKeeper,
+          child: Container(
+            height: 10.0,
+            child: Row(
+              children: scoreKeeper,
+            ),
           ),
         )
       ],

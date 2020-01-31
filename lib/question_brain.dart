@@ -58,4 +58,8 @@ class QuestionBrain {
   void resetQuestion() {
     _questionNumber = 0;
   }
+
+  int getQuestionNumber() {
+    return _question.length;
+  }
 }
